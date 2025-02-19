@@ -1,5 +1,5 @@
 [project]
-name = "Project name"
+name = "datascience-project"
 version = "0.1.0"
 description = "Your project description"
 requires-python = ">=3.12"
