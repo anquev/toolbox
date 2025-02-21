@@ -35,7 +35,6 @@
         "UV_LINK_MODE": "copy",
         "UV_PROJECT_ENVIRONMENT": "/home/vscode/.venv"
     },
-    "postCreateCommand": "uv sync --frozen",
-    "postStartCommand": "uv run pre-commit install",
+    "postCreateCommand": "pre-commit install && . /home/vscode/.venv/bin/activate && uv pip install -e .",
     "remoteUser": "vscode"
 }
