@@ -31,7 +31,8 @@ RUN mkdir -p /usr/local/pipx && \
     python -m pip install --no-cache-dir pipx && \
     pipx ensurepath && \
     pipx install uv && \
-    pipx install ruff
+    pipx install ruff && \
+    pipx install pre-commit 
 
 # User (non-root)
 RUN groupadd --gid $USER_GID $USERNAME && \
@@ -47,9 +48,10 @@ USER $USERNAME
 WORKDIR /workspace
 
 # Create venv in VIRTUAL_ENV path
-RUN uv venv
+RUN python -m venv /home/vscode/.venv
 
 COPY --chown=$USERNAME:$USERNAME pyproject.toml .
 
 # Install dependencies from pyproject
-RUN uv pip install -e .
+RUN . /home/vscode/.venv/bin/activate && \
+    uv pip install -e .
