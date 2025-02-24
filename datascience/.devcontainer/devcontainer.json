@@ -8,33 +8,21 @@
             "DEBIAN_VERSION": "bullseye"
         }
     },
-    "features": {
-        "ghcr.io/dhoeric/features/hadolint:1": {}
-    },
     "customizations": {
         "vscode": {
             "extensions": [
                 "charliermarsh.ruff",
-                "exiasr.hadolint",
-                "kevinrose.vsc-python-indent",
-                "mosapride.zenkaku",
-                "ms-azuretools.vscode-docker",
                 "ms-python.python",
                 "ms-python.vscode-pylance",
-                "njpwerner.autodocstring",
-                "redhat.vscode-yaml",
-                "shardulm94.trailing-spaces",
-                "tamasfe.even-better-toml",
-                "yzhang.markdown-all-in-one"
+                "ms-azuretools.vscode-docker",
+                "tamasfe.even-better-toml"
             ]
         }
     },
     "containerEnv": {
-        "DISPLAY": "dummy",
         "PYTHONUNBUFFERED": "True",
-        "UV_LINK_MODE": "copy",
         "UV_PROJECT_ENVIRONMENT": "/home/vscode/.venv"
     },
-    "postCreateCommand": "pre-commit install && . /home/vscode/.venv/bin/activate && uv pip install -e .",
+    "postCreateCommand": ". /home/vscode/.venv/bin/activate && uv pip install -e . && bash .devcontainer/post-install.sh",
     "remoteUser": "vscode"
 }

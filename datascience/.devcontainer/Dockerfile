@@ -31,8 +31,7 @@ RUN mkdir -p /usr/local/pipx && \
     python -m pip install --no-cache-dir pipx && \
     pipx ensurepath && \
     pipx install uv && \
-    pipx install ruff && \
-    pipx install pre-commit 
+    pipx install ruff
 
 # User (non-root)
 RUN groupadd --gid $USER_GID $USERNAME && \
