@@ -13,13 +13,13 @@ jobs:
     - name: Lint Dockerfile
       uses: hadolint/hadolint-action@v3.1.0
       with:
-        dockerfile: .devcontainer/Dockerfile
+        dockerfile: datascience/.devcontainer/Dockerfile
     
     - name: Build Docker image
       uses: docker/build-push-action@v5
       with:
         context: .
-        file: .devcontainer/Dockerfile
+        file: datascience/.devcontainer/Dockerfile
         push: false
         cache-from: type=gha
         cache-to: type=gha,mode=max
