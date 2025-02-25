@@ -7,14 +7,11 @@ ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    git \
-    curl \
-    gcc \
-    g++ \
-    make \
-    libopenblas-dev \
-    libgomp1 \
-    libgl1 \
+    git=1:2.39.5-0+deb12u2 \
+    gcc=14.2 \
+    libopenblas-dev=0.3.21+ds-4 \
+    libgomp1=10.2.1-6 \
+    libgl1=1.3.2-1 \
     && rm -rf /var/lib/apt/lists/*
 
 # pipx directory and install tools as root
@@ -28,10 +25,10 @@ ENV PIPX_HOME=/usr/local/pipx \
     UV_VIRTUALENV=/home/vscode/.venv
 
 RUN mkdir -p /usr/local/pipx && \
-    python -m pip install --no-cache-dir pipx && \
+    python -m pip install --no-cache-dir pipx==1.4.3 && \
     pipx ensurepath && \
-    pipx install uv && \
-    pipx install ruff
+    pipx install uv==0.6.3 && \
+    pipx install ruff==0.4.10
 
 # User (non-root)
 RUN groupadd --gid $USER_GID $USERNAME && \
