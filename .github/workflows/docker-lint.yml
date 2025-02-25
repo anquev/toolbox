@@ -9,12 +9,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+      with:
+        driver-opts: image=moby/buildkit:latest
+        buildkitd-flags: --debug
     
     - name: Lint Dockerfile
       uses: hadolint/hadolint-action@v3.1.0
       with:
         dockerfile: datascience/.devcontainer/Dockerfile
-        args: --ignore SC1091
+        ignore: SC1091
     
     - name: Build Docker image
       uses: docker/build-push-action@v5
@@ -22,5 +30,4 @@ jobs:
         context: .
         file: datascience/.devcontainer/Dockerfile
         push: false
-        cache-from: type=gha
-        cache-to: type=gha,mode=max
+        load: true
