@@ -49,5 +49,6 @@ RUN python -m venv /home/vscode/.venv
 COPY --chown=$USERNAME:$USERNAME pyproject.toml .
 
 # Install dependencies from pyproject
+# hadolint ignore=SC1091
 RUN . /home/vscode/.venv/bin/activate && \
     uv pip install -e .
