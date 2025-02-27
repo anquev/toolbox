@@ -1,7 +1,7 @@
 {
     "name": "uv",
     "build": {
-        "context": "..",
+        "context": "../..",
         "dockerfile": "Dockerfile",
         "args": {
             "UV_VERSION": "latest",
